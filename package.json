@@ -1,0 +1,23 @@
+{
+  "name": "gas-webpack-plugin",
+  "version": "0.1.0",
+  "description": "Webpack Plugin for Google Apps Script",
+  "main": "index.js",
+  "dependencies": {
+    "gas-entry-generator": "1.0.0"
+  },
+  "devDependencies": {
+    "coveralls": "2.11.9",
+    "eslint": "3.10.2",
+    "memory-fs": "0.3.0",
+    "nyc": "10.0.0",
+    "tap": "8.0.0",
+    "webpack": "1.13.3"
+  },
+  "scripts": {
+    "test": "eslint index.js && nyc tap test/*.test.js",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
+  },
+  "author": "fossamagna <fossamagna2@gmail.com>",
+  "license": "MIT"
+}
