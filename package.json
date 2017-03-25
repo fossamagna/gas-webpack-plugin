@@ -8,7 +8,7 @@
   },
   "devDependencies": {
     "coveralls": "2.11.16",
-    "eslint": "3.17.0",
+    "eslint": "3.18.0",
     "memory-fs": "0.4.1",
     "nyc": "10.1.2",
     "tap": "10.3.0",
