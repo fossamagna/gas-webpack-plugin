@@ -18,6 +18,10 @@
     "test": "eslint index.js && nyc tap test/*.test.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fossamagna/gas-webpack-plugin.git"
+  },
   "author": "fossamagna <fossamagna2@gmail.com>",
   "license": "MIT"
 }
