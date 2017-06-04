@@ -1,4 +1,5 @@
-# gas-webpack-plugin [![NPM version][npm-image]][npm-url]  [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]  [![Coverage percentage][coveralls-image]][coveralls-url]
+# gas-webpack-plugin [![NPM version][npm-image]][npm-url]  [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]  [![Coverage percentage][coveralls-image]][coveralls-url] 
+[![Greenkeeper badge](https://badges.greenkeeper.io/fossamagna/gas-webpack-plugin.svg)](https://greenkeeper.io/)
 
 [Webpack](https://webpack.github.io/) plugin for Google Apps Script.
 
