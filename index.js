@@ -6,7 +6,7 @@ function GasPlugin() {
 }
 
 GasPlugin.prototype.apply = function(compiler) {
-  compiler.plugin("emit", function(compilation, callback) {
+  var emit = function(compilation, callback) {
     compilation.chunks.forEach(function(chunk) {
       chunk.files.forEach(function(filename) {
         var source = compilation.assets[filename].source();
@@ -23,7 +23,14 @@ GasPlugin.prototype.apply = function(compiler) {
       });
     });
     callback();
-  });
+  }
+
+  if (compiler.hooks) {
+    var plugin = { name: 'GasPlugin' }
+    compiler.hooks.emit.tapAsync(plugin, emit);
+  } else {
+    compiler.plugin("emit", emit);
+  }
 };
 
 module.exports = GasPlugin;
