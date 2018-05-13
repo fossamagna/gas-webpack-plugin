@@ -1,4 +1,4 @@
-# gas-webpack-plugin [![NPM version][npm-image]][npm-url]  [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]  [![Coverage percentage][coveralls-image]][coveralls-url] 
+# gas-webpack-plugin [![NPM version][npm-image]][npm-url]  [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]  [![Coverage percentage][coveralls-image]][coveralls-url]
 [![Greenkeeper badge](https://badges.greenkeeper.io/fossamagna/gas-webpack-plugin.svg)](https://greenkeeper.io/)
 
 [Webpack](https://webpack.github.io/) plugin for Google Apps Script.
@@ -17,7 +17,7 @@ global.echo = echo;
 ```
 
 echo.js:
-```
+```js
 module.exports = function(message) {
   return message;
 }
@@ -41,7 +41,7 @@ module.exports = {
 
 build:
 ```
-$ webpack
+$ webpack --mode production
 ```
 
 Code.gs
@@ -175,12 +175,12 @@ $ npm install gas-webpack-plugin --save-dev
 ### CLI
 
 ```sh
-$ webpack
+$ webpack --mode production
 ```
 
 ### Webpack version support
 
-gas-webpack-plugin is support for Webpack@1.x and Webpack@2.x
+gas-webpack-plugin is support for Webpack@1.x, Webpack@2.x, Webpack@3.x and Webpack@4.x
 
 [npm-image]: https://badge.fury.io/js/gas-webpack-plugin.svg
 [npm-url]: https://npmjs.org/package/gas-webpack-plugin
