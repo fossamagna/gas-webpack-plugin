@@ -13,7 +13,7 @@
     "memory-fs": "0.4.1",
     "nyc": "11.7.2",
     "tap": "11.1.5",
-    "webpack": "3.11.0"
+    "webpack": "4.0.0"
   },
   "scripts": {
     "test": "eslint index.js && nyc tap test/*.test.js",
