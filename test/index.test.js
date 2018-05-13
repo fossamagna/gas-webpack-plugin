@@ -5,6 +5,7 @@ var GasPlugin = require('../');
 
 test('gas-plugin', function(t) {
   var compiler = webpack({
+    mode: 'production',
     context: __dirname + '/fixtures',
     entry: "./main.js",
     output: {
