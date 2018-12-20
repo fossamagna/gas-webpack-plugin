@@ -13,6 +13,9 @@ When `gas-webpack-plugin` detect a function assignment expression to `global` ob
 main.js:
 ```js
 var echo = require('./echo');
+/**
+ * Return write arguments.
+ */
 global.echo = echo;
 ```
 
@@ -25,7 +28,7 @@ module.exports = function(message) {
 
 webpack.config.js:
 ```js
-var GasPlugin = require("gas-webpack-plugin");
+const GasPlugin = require("gas-webpack-plugin");
 module.exports = {
   context: __dirname,
   entry: "./main.js",
@@ -46,6 +49,9 @@ $ webpack --mode production
 
 Code.gs
 ```js
+/**
+ * Return write arguments.
+ */
 function echo() {
 }/******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
