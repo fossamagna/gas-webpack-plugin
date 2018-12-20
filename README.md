@@ -178,6 +178,14 @@ $ npm install gas-webpack-plugin --save-dev
 $ webpack --mode production
 ```
 
+### Options
+
+You can pass a hash of configuration options to gas-webpack-plugin. Allowed values are as follows
+
+| Name | Type | Default | Description |
+-------|------|---------|-------------|
+| comment | `{String}` | `true` | If true then generate a top level function declaration statement with comment. |
+
 ### Webpack version support
 
 gas-webpack-plugin is support for Webpack@1.x, Webpack@2.x, Webpack@3.x and Webpack@4.x
