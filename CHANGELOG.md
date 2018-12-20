@@ -1,3 +1,7 @@
+## [1.0.1](https://github.com/fossamagna/gas-webpack-plugin/compare/v1.0.0...v1.0.1) (2018-12-20)
+
+
+
 # [1.0.0](https://github.com/fossamagna/gas-webpack-plugin/compare/v0.3.0...v1.0.0) (2018-12-20)
 
 
