@@ -190,7 +190,7 @@ You can pass a hash of configuration options to gas-webpack-plugin. Allowed valu
 
 | Name | Type | Default | Description |
 -------|------|---------|-------------|
-| comment | `{String}` | `true` | If true then generate a top level function declaration statement with comment. |
+| comment | `{Boolean}` | `true` | If true then generate a top level function declaration statement with comment. |
 
 ### Webpack version support
 
