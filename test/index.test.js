@@ -29,7 +29,11 @@ test('gas-plugin', function(t) {
  * Return write arguments.
  */
 function echo() {
-}`;
+}
+function plus() {
+}
+function minus() {
+}`
     t.ok(bundle.toString().startsWith(output), 'plugin and expected output match');
     t.end();
   });
