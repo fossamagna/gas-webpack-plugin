@@ -9,7 +9,7 @@
   "devDependencies": {
     "conventional-changelog-cli": "^2.0.1",
     "coveralls": "3.1.0",
-    "eslint": "7.0.0",
+    "eslint": "7.1.0",
     "memory-fs": "0.5.0",
     "nyc": "15.0.1",
     "tap": "14.10.7",
