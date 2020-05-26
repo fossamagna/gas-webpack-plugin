@@ -2,21 +2,38 @@
   "name": "gas-webpack-plugin",
   "version": "1.0.2",
   "description": "Webpack Plugin for Google Apps Script",
-  "main": "index.js",
+  "type": "module",
+  "files": [
+    "dist/**/*"
+  ],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "dependencies": {
+    "@types/node": "^14.0.5",
+    "@types/webpack": "^4.41.13",
     "gas-entry-generator": "1.1.1"
   },
   "devDependencies": {
+    "@types/chai": "^4.2.11",
+    "@types/memory-fs": "^0.3.2",
+    "@types/mocha": "^7.0.2",
+    "chai": "^4.2.0",
     "conventional-changelog-cli": "^2.0.1",
     "coveralls": "3.1.0",
-    "eslint": "7.0.0",
+    "cross-env": "^7.0.2",
     "memory-fs": "0.5.0",
-    "nyc": "15.0.1",
-    "tap": "14.10.7",
+    "mocha": "^7.2.0",
+    "nyc": "^15.0.1",
+    "ts-node": "^8.10.1",
+    "tslint": "^6.1.2",
+    "typescript": "^3.9.3",
     "webpack": "4.43.0"
   },
   "scripts": {
-    "test": "eslint index.js && nyc tap test/*.test.js",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test",
+    "build": "tsc",
+    "test": "tslint --project . && cross-env TS_NODE_COMPILER_OPTIONS='{ \"module\": \"commonjs\" }' nyc mocha -r ts-node/register src/index.test.ts",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md"
@@ -26,5 +43,8 @@
     "url": "git+https://github.com/fossamagna/gas-webpack-plugin.git"
   },
   "author": "fossamagna <fossamagna2@gmail.com>",
+  "contributors": [
+    "Rolf van Kleef <npm@rolfvankleef.nl>"
+  ],
   "license": "MIT"
 }
