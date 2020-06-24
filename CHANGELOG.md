@@ -1,9 +1,13 @@
+## [1.0.3](https://github.com/fossamagna/gas-webpack-plugin/compare/v1.0.2...v1.0.3) (2020-06-24)
+
+
+
 ## [1.0.2](https://github.com/fossamagna/gas-webpack-plugin/compare/v1.0.1...v1.0.2) (2019-01-21)
 
 
 ### Bug Fixes
 
-* Add test for SequenceExpression ([033859b](https://github.com/fossamagna/gas-webpack-plugin/commit/033859b)), closes [#208](https://github.com/fossamagna/gas-webpack-plugin/issues/208)
+* Add test for SequenceExpression ([033859b](https://github.com/fossamagna/gas-webpack-plugin/commit/033859bc1e2c02b6ec8abb4eaa3df436c60b74db)), closes [#208](https://github.com/fossamagna/gas-webpack-plugin/issues/208)
 
 
 
@@ -16,7 +20,7 @@
 
 ### Features
 
-* Add comment option ([fa31a7e](https://github.com/fossamagna/gas-webpack-plugin/commit/fa31a7e)), closes [#195](https://github.com/fossamagna/gas-webpack-plugin/issues/195)
+* Add comment option ([fa31a7e](https://github.com/fossamagna/gas-webpack-plugin/commit/fa31a7e6f3d781463c26a32c3c0d1b40d4a63a31)), closes [#195](https://github.com/fossamagna/gas-webpack-plugin/issues/195)
 
 
 
@@ -29,7 +33,7 @@
 
 ### Bug Fixes
 
-* **package:** update gas-entry-generator to version 1.0.1 ([337c3a2](https://github.com/fossamagna/gas-webpack-plugin/commit/337c3a2))
+* **package:** update gas-entry-generator to version 1.0.1 ([337c3a2](https://github.com/fossamagna/gas-webpack-plugin/commit/337c3a2a75a6e83ef0c47e1f92ab3be2471421a2))
 
 
 
