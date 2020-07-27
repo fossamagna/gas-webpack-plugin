@@ -1,3 +1,12 @@
+## [1.0.4](https://github.com/fossamagna/gas-webpack-plugin/compare/v1.0.3...v1.0.4) (2020-07-27)
+
+
+### Bug Fixes
+
+* Fix to prepend top-level functions when minimize too. ([684c3d2](https://github.com/fossamagna/gas-webpack-plugin/commit/684c3d29cc84d3935d0d61b203ca47618b486851))
+
+
+
 ## [1.0.3](https://github.com/fossamagna/gas-webpack-plugin/compare/v1.0.2...v1.0.3) (2020-06-24)
 
 
