@@ -6,32 +6,38 @@ function GasPlugin(options) {
   this.options = options || {comment: true};
 }
 
+function gasify(compilation, options, chunk) {
+  chunk.files.forEach(function(filename) {
+    const source = compilation.assets[filename].source();
+    const entries = gasEntryGenerator(source, options);
+    const gasify = entries + source;
+    compilation.assets[filename] = {
+      source: function() {
+        return gasify;
+      },
+      size: function() {
+        return gasify.length;
+      }
+    }
+  });
+}
+
 GasPlugin.prototype.apply = function(compiler) {
   const options = this.options;
-  const emit = function(compilation, callback) {
-    compilation.chunks.forEach(function(chunk) {
-      chunk.files.forEach(function(filename) {
-        const source = compilation.assets[filename].source();
-        const entries = gasEntryGenerator(source, options);
-        const gasify = entries + source;
-        compilation.assets[filename] = {
-          source: function() {
-            return gasify;
-          },
-          size: function() {
-            return gasify.length;
-          }
-        }
+  const plugin = { name: 'GasPlugin' };
+  const compilationHook = (compilation) => {
+    compilation.hooks.optimizeChunkAssets.tapAsync(plugin, (chunks, callback) => {
+      chunks.forEach(chunk => {
+        gasify(compilation, options, chunk);
       });
-    });
-    callback();
-  }
+      callback();
+    })
+  };
 
   if (compiler.hooks) {
-    const plugin = { name: 'GasPlugin' }
-    compiler.hooks.emit.tapAsync(plugin, emit);
+    compiler.hooks.compilation.tap(plugin, compilationHook);
   } else {
-    compiler.plugin("emit", emit);
+    compiler.plugin("compilation", compilationHook);
   }
 };
 
