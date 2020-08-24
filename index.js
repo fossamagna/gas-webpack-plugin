@@ -1,6 +1,8 @@
 'use strict';
 
 const gasEntryGenerator = require('gas-entry-generator');
+const RawSource = require('webpack-sources').RawSource;
+const SourceMapSource = require('webpack-sources').SourceMapSource;
 
 function GasPlugin(options) {
   this.options = options || {comment: true};
@@ -8,17 +10,23 @@ function GasPlugin(options) {
 
 function gasify(compilation, options, chunk) {
   chunk.files.forEach(function(filename) {
-    const source = compilation.assets[filename].source();
+    const asset = compilation.assets[filename];
+    let source, map;
+    if (asset.sourceAndMap) {
+      let sourceAndMap = asset.sourceAndMap();
+      source = sourceAndMap.source;
+      map = sourceAndMap.map
+    } else {
+      source = asset.source();
+      map = typeof asset.map === 'function'
+        ? asset.map()
+        : null
+    }
     const entries = gasEntryGenerator(source, options);
     const gasify = entries + source;
-    compilation.assets[filename] = {
-      source: function() {
-        return gasify;
-      },
-      size: function() {
-        return gasify.length;
-      }
-    }
+    compilation.assets[filename] = map
+              ? new SourceMapSource(gasify, filename, map)
+              : new RawSource(gasify);
   });
 }
 
