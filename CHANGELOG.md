@@ -1,3 +1,12 @@
+## [1.0.5](https://github.com/fossamagna/gas-webpack-plugin/compare/v1.0.4...v1.0.5) (2020-08-24)
+
+
+### Bug Fixes
+
+* Enable to work with es3ify and source map ([2f8fa79](https://github.com/fossamagna/gas-webpack-plugin/commit/2f8fa796603605ec07dd3eb3d301113dc7ffd156))
+
+
+
 ## [1.0.4](https://github.com/fossamagna/gas-webpack-plugin/compare/v1.0.3...v1.0.4) (2020-07-27)
 
 
