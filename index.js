@@ -8,7 +8,7 @@ function GasPlugin(options) {
   this.options = options || {comment: true};
 }
 
-function gasify(compilation, options, chunk) {
+function gasify(compilation, chunk, entryFunctions) {
   chunk.files.forEach(function(filename) {
     const asset = compilation.assets[filename];
     let source, map;
@@ -22,7 +22,12 @@ function gasify(compilation, options, chunk) {
         ? asset.map()
         : null
     }
-    const entries = gasEntryGenerator(source, options);
+
+    const entries = chunk.getModules()
+      .map(module => entryFunctions.get(module.id))
+      .filter(entries => !!entries)
+      .join('');
+
     const gasify = entries + source;
     compilation.assets[filename] = map
               ? new SourceMapSource(gasify, filename, map)
@@ -34,9 +39,16 @@ GasPlugin.prototype.apply = function(compiler) {
   const options = this.options;
   const plugin = { name: 'GasPlugin' };
   const compilationHook = (compilation) => {
+    const entryFunctions = new Map();
+    const javascript = compilation.moduleTemplates.javascript;
+    javascript.hooks.module.tap('GasPlugin', (source, module) => {
+      const entries = gasEntryGenerator(source.source(), options);
+      entryFunctions.set(module.id, entries);
+    });
+
     compilation.hooks.optimizeChunkAssets.tapAsync(plugin, (chunks, callback) => {
       chunks.forEach(chunk => {
-        gasify(compilation, options, chunk);
+        gasify(compilation, chunk, entryFunctions);
       });
       callback();
     })

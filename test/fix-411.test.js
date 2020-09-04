@@ -41,13 +41,8 @@ test('gas-plugin with es3ify', function(t) {
     t.error(err, 'build failed');
     const jsonStats = stats.toJson();
     t.ok(jsonStats.errors.length === 0);
-    console.log(jsonStats.errors)
     t.ok(jsonStats.warnings.length === 0);
-    console.log(jsonStats.warnings)
     const bundle = mfs.readFileSync(__dirname + '/output/bundle.js', 'utf8');
-    console.log(bundle)
-    const sourceMap = mfs.readFileSync(__dirname + '/output/bundle.js.map', 'utf8');
-    console.log(sourceMap)
     const output = `/**
  * Return write arguments.
  */
