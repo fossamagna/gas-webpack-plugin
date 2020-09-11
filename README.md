@@ -190,6 +190,51 @@ You can pass a hash of configuration options to gas-webpack-plugin. Allowed valu
 | Name | Type | Default | Description |
 -------|------|---------|-------------|
 | comment | `{Boolean}` | `true` | If true then generate a top level function declaration statement with comment. |
+| autoGlobalExportsFiles | `{Array<String>}` | `[]` | Array of source file paths that to generate global assignments expression from exports.* statements. |
+
+## Geranate global assignment expressions from exports.*
+
+Assignments expression to global object is automatically generated from named exports (`exports.*`) Included in the file specified by the autoGlobalExportsFiles option.
+
+main.ts:
+```ts
+import './echo';
+```
+
+echo.ts:
+```ts
+// geranate global assignment expressions from named export
+export const echo = (message) => message;
+```
+
+webpack.config.js:
+```js
+const GasPlugin = require("gas-webpack-plugin");
+module.exports = {
+  context: __dirname,
+  entry: "./main.ts",
+  module: {
+    rules: [
+      {
+        test: /(\.ts)$/,
+        loader: 'ts-loader',
+      },
+    ],
+  },
+  resolve: {
+    extensions: [".ts"],
+  },
+  output: {
+    path: __dirname ,
+    filename: 'Code.js'
+  },
+  plugins: [
+    new GasPlugin({
+      autoGlobalExportsFiles: ['*.ts']
+    })
+  ]
+}
+```
 
 ### Webpack version support
 

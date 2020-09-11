@@ -25,7 +25,9 @@ const options = {
     filename: "bundle.js",
   },
   plugins: [
-    new GasPlugin(),
+    new GasPlugin({
+      autoGlobalExportsFiles: ['*.ts']
+    }),
     new es3ifyPlugin()
   ],
   optimization: {
@@ -51,8 +53,11 @@ function echo() {
 function plus() {
 }
 function minus() {
+}
+function foo() {
 }`
-    t.ok(bundle.toString().startsWith(output), 'plugin and expected output match');
+    t.ok(bundle.startsWith(output), bundle);
+    t.match(bundle, /.*global\.foo = exports\.foo;.*/);
     t.end();
   });
 });
@@ -68,8 +73,9 @@ test('gas-plugin with es3ify prepend top-level functions when minimize is enable
     t.ok(jsonStats.errors.length === 0);
     t.ok(jsonStats.warnings.length === 0);
     const bundle = mfs.readFileSync(__dirname + '/output/bundle.js', 'utf8');
-    const output = 'function echo(){}function plus(){}function minus(){}'
-    t.ok(bundle.toString().startsWith(output), 'plugin and expected output match');
+    const output = 'function echo(){}function plus(){}function minus(){}function foo(){}'
+    t.ok(bundle.startsWith(output), bundle);
+    t.match(bundle, /.*global\.foo=.+\.foo.*/);
     t.end();
   });
 });
