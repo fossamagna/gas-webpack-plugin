@@ -1,3 +1,12 @@
+# [1.2.0](https://github.com/fossamagna/gas-webpack-plugin/compare/v1.1.0...v1.2.0) (2020-09-11)
+
+
+### Features
+
+* Add support auto generation of global assignment expressions from exports.* ([f681381](https://github.com/fossamagna/gas-webpack-plugin/commit/f6813812265012c3f7c5ceee4e1d3015eddcce7b))
+
+
+
 # [1.1.0](https://github.com/fossamagna/gas-webpack-plugin/compare/v1.0.5...v1.1.0) (2020-09-04)
 
 
