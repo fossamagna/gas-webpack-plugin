@@ -4,8 +4,8 @@
 
 ## About
 
-In Google Apps Script, it must be top level function declaration that entry point called from [google.script.run](https://developers.google.com/apps-script/guides/html/reference/run).
-When `gas-webpack-plugin` detect a function assignment expression to `global` object. it generate a top level function declaration statement.
+In Google Apps Script, an entry point called from [google.script.run](https://developers.google.com/apps-script/guides/html/reference/run) must be a top level function declaration on the server side.
+`gas-webpack-plugin` detects function assignment expressions to `global` object and generate a corresponding top level function declaration statement.
 
 ## example
 
