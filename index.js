@@ -1,7 +1,8 @@
 'use strict';
 
 const { generate } = require('gas-entry-generator');
-const { ConcatSource, SourceMapSource, RawSource } = require('webpack-sources');
+const { SourceMapSource, RawSource } = require('webpack-sources');
+const Dependency = require('webpack/lib/Dependency');
 const minimatch = require('minimatch');
 const path = require('path');
 
@@ -30,6 +31,7 @@ function gasify(compilation, chunk, entryFunctions) {
     }
 
     const entries = chunk.getModules()
+      .filter(module => !!entryFunctions.get(module.id))
       .map(module => entryFunctions.get(module.id).entryPointFunctions)
       .filter(entries => !!entries)
       .join('\n');
@@ -41,29 +43,57 @@ function gasify(compilation, chunk, entryFunctions) {
   });
 }
 
+class GasDependency extends Dependency {
+  constructor(module) {
+    super();
+    this. module = module;
+  }
+}
+
+GasDependency.Template = class GasDependencyTemplate {
+  constructor(options) {
+    this.comment = options.comment;
+    this.patterns = options.patterns;
+    this.entryFunctions = new Map();
+  }
+
+  apply(dep, source) {
+    const module = dep.module;
+    const options = {
+      comment: this.comment,
+      autoGlobalExports: module.resource && this.patterns.some(file => minimatch(module.resource, file)),
+    };
+    const output = generate(source.source(), options);
+    this.entryFunctions.set(module.id, output);
+    if (output.globalAssignments) {
+      source.insert(source.size(), output.globalAssignments);
+    }
+  }
+};
+
 GasPlugin.prototype.apply = function(compiler) {
   const context = compiler.options.context;
   const patterns = this.options.autoGlobalExportsFiles
     .map(file => path.isAbsolute(file) ? file : path.resolve(context, file));
   const plugin = { name: 'GasPlugin' };
   const compilationHook = (compilation) => {
-    const entryFunctions = new Map();
-    const javascript = compilation.moduleTemplates.javascript;
-    javascript.hooks.module.tap('GasPlugin', (source, module) => {
-      const options = {
-        comment: this.options.comment,
-        autoGlobalExports: patterns.some(file => minimatch(module.resource, file)),
-      };
-      const output = generate(source.source(), options);
-      entryFunctions.set(module.id, output);
-      if (output.globalAssignments) {
-        return new ConcatSource(source, output.globalAssignments);
-      }
+    const gasDependencyTemplate = new GasDependency.Template({
+      comment: this.options.comment,
+      patterns
+    });
+
+    compilation.dependencyTemplates.set(
+      GasDependency,
+      gasDependencyTemplate
+    );
+
+    compilation.hooks.buildModule.tap('GasPlugin', module => {
+      module.addDependency(new GasDependency(module));
     });
 
     compilation.hooks.optimizeChunkAssets.tapAsync(plugin, (chunks, callback) => {
       chunks.forEach(chunk => {
-        gasify(compilation, chunk, entryFunctions);
+        gasify(compilation, chunk, gasDependencyTemplate.entryFunctions);
       });
       callback();
     })

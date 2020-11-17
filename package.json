@@ -21,6 +21,7 @@
     "webpack": "4.44.2"
   },
   "scripts": {
+    "pretest": "cd test && npm install",
     "test": "eslint index.js && nyc tap test/*.test.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
