@@ -1,4 +1,7 @@
 var echo = require('./echo');
+const seedrandom = require("seedrandom");
+
+exports.foo = () => seedrandom("bar")();
 /**
  * Return write arguments.
  */
