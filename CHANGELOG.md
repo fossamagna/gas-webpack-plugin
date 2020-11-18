@@ -1,3 +1,12 @@
+## [1.2.1](https://github.com/fossamagna/gas-webpack-plugin/compare/v1.2.0...v1.2.1) (2020-11-18)
+
+
+### Bug Fixes
+
+* Avoid to fail bundling when has module ignored by webpack ([dfd9262](https://github.com/fossamagna/gas-webpack-plugin/commit/dfd926278d8098540649fdc93d27d1c8d182f762))
+
+
+
 # [1.2.0](https://github.com/fossamagna/gas-webpack-plugin/compare/v1.1.0...v1.2.0) (2020-09-11)
 
 
