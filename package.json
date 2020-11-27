@@ -4,7 +4,7 @@
   "description": "Webpack Plugin for Google Apps Script",
   "main": "index.js",
   "dependencies": {
-    "gas-entry-generator": "2.0.1",
+    "gas-entry-generator": "2.1.0",
     "minimatch": "^3.0.4",
     "webpack-sources": "^1.4.3"
   },
