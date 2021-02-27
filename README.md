@@ -238,7 +238,7 @@ module.exports = {
 
 ### Webpack version support
 
-gas-webpack-plugin is support for Webpack@1.x, Webpack@2.x, Webpack@3.x and Webpack@4.x
+gas-webpack-plugin is support for Webpack@5.x
 
 [npm-image]: https://badge.fury.io/js/gas-webpack-plugin.svg
 [npm-url]: https://npmjs.org/package/gas-webpack-plugin
