@@ -12,7 +12,7 @@
     "conventional-changelog-cli": "^2.0.1",
     "coveralls": "3.1.0",
     "es3ify-webpack-plugin": "^0.1.0",
-    "eslint": "7.14.0",
+    "eslint": "7.20.0",
     "memory-fs": "0.5.0",
     "nyc": "15.1.0",
     "tap": "14.11.0",
