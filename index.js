@@ -15,38 +15,36 @@ function GasPlugin(options) {
   this.options = Object.assign({}, defaultOptions, options || {});
 }
 
-function gasify(compilation, chunk, entryFunctions) {
-  chunk.files.forEach(function(filename) {
-    const asset = compilation.assets[filename];
-    let source, map;
-    if (asset.sourceAndMap) {
-      let sourceAndMap = asset.sourceAndMap();
-      source = sourceAndMap.source;
-      map = sourceAndMap.map
-    } else {
-      source = asset.source();
-      map = typeof asset.map === 'function'
-        ? asset.map()
-        : null
-    }
+function gasify(compilation, chunk, filename, entryFunctions) {
+  const asset = compilation.assets[filename];
+  let source, map;
+  if (asset.sourceAndMap) {
+    let sourceAndMap = asset.sourceAndMap();
+    source = sourceAndMap.source;
+    map = sourceAndMap.map
+  } else {
+    source = asset.source();
+    map = typeof asset.map === 'function'
+      ? asset.map()
+      : null
+  }
+  
+  const entries = compilation.chunkGraph.getChunkModules(chunk)
+    .filter(module => !!entryFunctions.get(module))
+    .map(module => entryFunctions.get(module).entryPointFunctions)
+    .filter(entries => !!entries)
+    .join('\n');
 
-    const entries = chunk.getModules()
-      .filter(module => !!entryFunctions.get(module.id))
-      .map(module => entryFunctions.get(module.id).entryPointFunctions)
-      .filter(entries => !!entries)
-      .join('\n');
-
-    const gasify = entries + source;
-    compilation.assets[filename] = map
-              ? new SourceMapSource(gasify, filename, map)
-              : new RawSource(gasify);
-  });
+  const gasify = entries + source;
+  compilation.assets[filename] = map
+            ? new SourceMapSource(gasify, filename, map)
+            : new RawSource(gasify);
 }
 
 class GasDependency extends Dependency {
-  constructor(module) {
+  constructor(m) {
     super();
-    this. module = module;
+    this.m = m;
   }
 }
 
@@ -58,13 +56,18 @@ GasDependency.Template = class GasDependencyTemplate {
   }
 
   apply(dep, source) {
-    const module = dep.module;
+    const module = dep.m;
     const options = {
       comment: this.comment,
       autoGlobalExports: module.resource && this.patterns.some(file => minimatch(module.resource, file)),
     };
-    const output = generate(source.source(), options);
-    this.entryFunctions.set(module.id, output);
+
+    const originalSource = typeof source.original === 'function' 
+      ? source.original().source()
+      : source.source();
+
+    const output = generate(originalSource, options);
+    this.entryFunctions.set(module, output);
     if (output.globalAssignments) {
       source.insert(source.size(), output.globalAssignments);
     }
@@ -76,7 +79,7 @@ GasPlugin.prototype.apply = function(compiler) {
   const patterns = this.options.autoGlobalExportsFiles
     .map(file => path.isAbsolute(file) ? file : path.resolve(context, file));
   const plugin = { name: 'GasPlugin' };
-  const compilationHook = (compilation) => {
+  const compilationHook = (compilation, { normalModuleFactory }) => {
     const gasDependencyTemplate = new GasDependency.Template({
       comment: this.options.comment,
       patterns
@@ -87,23 +90,28 @@ GasPlugin.prototype.apply = function(compiler) {
       gasDependencyTemplate
     );
 
-    compilation.hooks.buildModule.tap('GasPlugin', module => {
-      module.addDependency(new GasDependency(module));
-    });
-
-    compilation.hooks.optimizeChunkAssets.tapAsync(plugin, (chunks, callback) => {
-      chunks.forEach(chunk => {
-        gasify(compilation, chunk, gasDependencyTemplate.entryFunctions);
+    const handler = parser => {
+      parser.hooks.program.tap(plugin, () => {
+        parser.state.current.addDependency(new GasDependency(parser.state.current));
       });
-      callback();
-    })
+    };
+
+    normalModuleFactory.hooks.parser
+      .for("javascript/auto")
+      .tap("GasPlugin", handler);
+    normalModuleFactory.hooks.parser
+      .for("javascript/dynamic")
+      .tap("GasPlugin", handler);
+    normalModuleFactory.hooks.parser
+      .for("javascript/esm")
+      .tap("GasPlugin", handler);
+
+    compilation.hooks.chunkAsset.tap(plugin, (chunk, filename) => {
+      gasify(compilation, chunk, filename, gasDependencyTemplate.entryFunctions)
+    });
   };
 
-  if (compiler.hooks) {
-    compiler.hooks.compilation.tap(plugin, compilationHook);
-  } else {
-    compiler.plugin("compilation", compilationHook);
-  }
+  compiler.hooks.compilation.tap(plugin, compilationHook);
 };
 
 module.exports = GasPlugin;
