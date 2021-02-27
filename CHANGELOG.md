@@ -1,3 +1,12 @@
+# [2.0.0](https://github.com/fossamagna/gas-webpack-plugin/compare/v1.2.2...v2.0.0) (2021-02-27)
+
+
+### Features
+
+* Support webpack@5 ([e27f312](https://github.com/fossamagna/gas-webpack-plugin/commit/e27f3128b0561623b5742452ff57ea85632d7c93)), closes [#417](https://github.com/fossamagna/gas-webpack-plugin/issues/417)
+
+
+
 ## [1.2.2](https://github.com/fossamagna/gas-webpack-plugin/compare/v1.2.1...v1.2.2) (2020-11-29)
 
 
