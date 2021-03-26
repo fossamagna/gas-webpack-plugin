@@ -30,8 +30,8 @@ function gasify(compilation, chunk, filename, entryFunctions) {
   }
   
   const entries = compilation.chunkGraph.getChunkModules(chunk)
-    .filter(module => !!entryFunctions.get(module))
-    .map(module => entryFunctions.get(module).entryPointFunctions)
+    .filter(module => !!entryFunctions.get(module.rootModule || module))
+    .map(module => entryFunctions.get(module.rootModule || module).entryPointFunctions)
     .filter(entries => !!entries)
     .join('\n');
 
