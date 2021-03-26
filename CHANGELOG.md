@@ -1,3 +1,12 @@
+## [2.0.1](https://github.com/fossamagna/gas-webpack-plugin/compare/v2.0.0...v2.0.1) (2021-03-26)
+
+
+### Bug Fixes
+
+* Make it possible to use ES module in production mode ([3183834](https://github.com/fossamagna/gas-webpack-plugin/commit/318383407e0e6329a35382de256f00b6b867477b)), closes [#516](https://github.com/fossamagna/gas-webpack-plugin/issues/516)
+
+
+
 # [2.0.0](https://github.com/fossamagna/gas-webpack-plugin/compare/v1.2.2...v2.0.0) (2021-02-27)
 
 
