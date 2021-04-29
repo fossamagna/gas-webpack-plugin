@@ -1,0 +1,51 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "20:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: ts-loader
+    versions:
+    - 9.0.2
+    - 9.1.0
+  - dependency-name: webpack
+    versions:
+    - 5.18.0
+    - 5.19.0
+    - 5.20.1
+    - 5.20.2
+    - 5.21.2
+    - 5.22.0
+    - 5.23.0
+    - 5.24.0
+    - 5.24.1
+    - 5.24.2
+    - 5.25.0
+    - 5.26.0
+    - 5.26.2
+    - 5.26.3
+    - 5.27.0
+    - 5.27.2
+    - 5.30.0
+    - 5.31.0
+    - 5.31.2
+    - 5.32.0
+    - 5.33.2
+    - 5.35.0
+  - dependency-name: tap
+    versions:
+    - 15.0.0
+    - 15.0.1
+    - 15.0.2
+    - 15.0.4
+  - dependency-name: eslint
+    versions:
+    - 7.18.0
+    - 7.19.0
+    - 7.20.0
+  - dependency-name: typescript
+    versions:
+    - 4.2.2
