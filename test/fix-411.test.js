@@ -45,7 +45,8 @@ test('gas-plugin with es3ify', function(t) {
     t.ok(jsonStats.errors.length === 0);
     t.ok(jsonStats.warnings.length === 0);
     const bundle = mfs.readFileSync(__dirname + '/output/bundle.js', 'utf8');
-    const output = `/**
+    const output = `var global = this;
+/**
  * Return write arguments.
  */
 function echo() {
@@ -73,7 +74,7 @@ test('gas-plugin with es3ify prepend top-level functions when minimize is enable
     t.ok(jsonStats.errors.length === 0);
     t.ok(jsonStats.warnings.length === 0);
     const bundle = mfs.readFileSync(__dirname + '/output/bundle.js', 'utf8');
-    const output = 'function echo(){}function plus(){}function minus(){}function foo(){}'
+    const output = 'var global=this;function echo(){}function plus(){}function minus(){}function foo(){}'
     t.ok(bundle.startsWith(output), bundle);
     t.match(bundle, /.*global\.foo=.+\.foo.*/);
     t.end();
