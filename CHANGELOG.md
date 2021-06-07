@@ -1,3 +1,12 @@
+## [2.0.2](https://github.com/fossamagna/gas-webpack-plugin/compare/v2.0.1...v2.0.2) (2021-06-07)
+
+
+### Bug Fixes
+
+* ReferenceError: "global" is not defined when use autoGlobalExportsFiles option ([80553bf](https://github.com/fossamagna/gas-webpack-plugin/commit/80553bff2283d4d4b5185fda1cc92882659e37fd)), closes [#561](https://github.com/fossamagna/gas-webpack-plugin/issues/561)
+
+
+
 ## [2.0.1](https://github.com/fossamagna/gas-webpack-plugin/compare/v2.0.0...v2.0.1) (2021-03-26)
 
 
