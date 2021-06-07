@@ -36,7 +36,11 @@ function gasify(compilation, chunk, entryFunctions) {
       .filter(entries => !!entries)
       .join('\n');
 
-    const gasify = entries + source;
+    const needGlobalObject = chunk.getModules()
+      .filter(module => !!entryFunctions.get(module.id))
+      .some(module => !!entryFunctions.get(module.id).globalAssignments)
+
+    const gasify = (needGlobalObject ? 'var global = this;\n' : '') + entries + source;
     compilation.assets[filename] = map
               ? new SourceMapSource(gasify, filename, map)
               : new RawSource(gasify);
