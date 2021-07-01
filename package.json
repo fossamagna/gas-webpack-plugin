@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "conventional-changelog-cli": "^2.0.1",
-    "coveralls": "3.1.0",
+    "coveralls": "3.1.1",
     "es3ify-webpack-plugin": "^0.1.0",
     "eslint": "7.29.0",
     "memory-fs": "0.5.0",
