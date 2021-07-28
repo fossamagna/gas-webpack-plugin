@@ -3,6 +3,7 @@
   "version": "1.2.0",
   "description": "Webpack Plugin for Google Apps Script",
   "main": "index.js",
+  "types": "types.d.ts",
   "dependencies": {
     "gas-entry-generator": "2.0.1",
     "minimatch": "^3.0.4",
