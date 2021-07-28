@@ -6,7 +6,7 @@
   "dependencies": {
     "gas-entry-generator": "2.1.0",
     "minimatch": "^3.0.4",
-    "webpack-sources": "^2.2.0"
+    "webpack-sources": "^3.0.3"
   },
   "devDependencies": {
     "conventional-changelog-cli": "^2.0.1",
