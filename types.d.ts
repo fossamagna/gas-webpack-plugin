@@ -4,7 +4,7 @@ interface Options {
   /**
    * If true then generate a top level function declaration statement with comment.
    */
-  comment: boolean;
+  comment?: boolean;
   /**
    * Array of source file paths that to generate global assignments expression from exports.* statements.
    */
