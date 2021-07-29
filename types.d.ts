@@ -8,7 +8,7 @@ interface Options {
   /**
    * Array of source file paths that to generate global assignments expression from exports.* statements.
    */
-  autoGlobalExportsFiles: string[];
+  autoGlobalExportsFiles?: string[];
 }
 
 export default class implements WebpackPluginInstance {
