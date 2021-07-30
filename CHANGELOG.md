@@ -1,3 +1,12 @@
+# [2.1.0](https://github.com/fossamagna/gas-webpack-plugin/compare/v2.0.2...v2.1.0) (2021-07-30)
+
+
+### Features
+
+* Add types ([b519d58](https://github.com/fossamagna/gas-webpack-plugin/commit/b519d584dfd80cd28f4d40f2fbc1527b79dc5fa3))
+
+
+
 ## [2.0.2](https://github.com/fossamagna/gas-webpack-plugin/compare/v2.0.1...v2.0.2) (2021-06-07)
 
 
