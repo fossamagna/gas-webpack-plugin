@@ -242,8 +242,8 @@ gas-webpack-plugin is support for Webpack@5.x
 
 [npm-image]: https://badge.fury.io/js/gas-webpack-plugin.svg
 [npm-url]: https://npmjs.org/package/gas-webpack-plugin
-[travis-image]: https://travis-ci.org/fossamagna/gas-webpack-plugin.svg?branch=master
-[travis-url]: https://travis-ci.org/fossamagna/gas-webpack-plugin
+[travis-image]: https://travis-ci.com/fossamagna/gas-webpack-plugin.svg?branch=master
+[travis-url]: https://travis-ci.com/fossamagna/gas-webpack-plugin
 [daviddm-image]: https://david-dm.org/fossamagna/gas-webpack-plugin.svg
 [daviddm-url]: https://david-dm.org/fossamagna/gas-webpack-plugin
 [coveralls-image]: https://coveralls.io/repos/github/fossamagna/gas-webpack-plugin/badge.svg?branch=master
