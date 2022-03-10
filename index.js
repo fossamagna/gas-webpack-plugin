@@ -8,7 +8,8 @@ const path = require('path');
 
 const defaultOptions = {
   comment: true,
-  autoGlobalExportsFiles: []
+  autoGlobalExportsFiles: [],
+  include: ["**/*"]
 };
 
 function GasPlugin(options) {
@@ -55,15 +56,19 @@ class GasDependency extends Dependency {
 GasDependency.Template = class GasDependencyTemplate {
   constructor(options) {
     this.comment = options.comment;
-    this.patterns = options.patterns;
+    this.autoGlobalExportsFilePatterns = options.autoGlobalExportsFilePatterns;
+    this.includePatterns = options.includePatterns;
     this.entryFunctions = new Map();
   }
 
   apply(dep, source) {
     const module = dep.m;
+    if (!this.includePatterns.some(file => minimatch(module.resource, file))) {
+      return;
+    }
     const options = {
       comment: this.comment,
-      autoGlobalExports: module.resource && this.patterns.some(file => minimatch(module.resource, file)),
+      autoGlobalExports: module.resource && this.autoGlobalExportsFilePatterns.some(file => minimatch(module.resource, file)),
     };
 
     const originalSource = typeof source.original === 'function' 
@@ -80,13 +85,17 @@ GasDependency.Template = class GasDependencyTemplate {
 
 GasPlugin.prototype.apply = function(compiler) {
   const context = compiler.options.context;
-  const patterns = this.options.autoGlobalExportsFiles
+  const autoGlobalExportsFilePatterns = this.options.autoGlobalExportsFiles
     .map(file => path.isAbsolute(file) ? file : path.resolve(context, file));
+  const includePatterns = this.options.include
+    .map(file => path.isAbsolute(file) ? file : path.resolve(context, file));
+
   const plugin = { name: 'GasPlugin' };
   const compilationHook = (compilation, { normalModuleFactory }) => {
     const gasDependencyTemplate = new GasDependency.Template({
       comment: this.options.comment,
-      patterns
+      autoGlobalExportsFilePatterns,
+      includePatterns,
     });
 
     compilation.dependencyTemplates.set(

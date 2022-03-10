@@ -191,6 +191,7 @@ You can pass a hash of configuration options to gas-webpack-plugin. Allowed valu
 -------|------|---------|-------------|
 | comment | `{Boolean}` | `true` | If true then generate a top level function declaration statement with comment. |
 | autoGlobalExportsFiles | `{Array<String>}` | `[]` | Array of source file paths that to generate global assignments expression from exports.* statements. |
+| include | `{Array<String>}` | `[**/*]` | Array of path patterns to detect functions to generate top level function definitions. accept glob pattern. |
 
 ## Geranate global assignment expressions from exports.*
 
