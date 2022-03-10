@@ -9,6 +9,10 @@ interface Options {
    * Array of source file paths that to generate global assignments expression from exports.* statements.
    */
   autoGlobalExportsFiles?: string[];
+  /**
+   * Array of path patterns to detect functions to generate top level function definitions. accept glob pattern.
+   */
+  include?: []
 }
 
 export default class implements WebpackPluginInstance {
