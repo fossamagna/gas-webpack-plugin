@@ -1,4 +1,4 @@
-# gas-webpack-plugin [![NPM version][npm-image]][npm-url] [![Build Status][github-actions-image]][github-actions-url] [![Dependency Status][daviddm-image]][daviddm-url]  [![Coverage percentage][coveralls-image]][coveralls-url]
+# gas-webpack-plugin [![NPM version][npm-image]][npm-url] [![Build Status][github-actions-image]][github-actions-url] [![Coverage percentage][coveralls-image]][coveralls-url]
 
 [Webpack](https://webpack.js.org/) plugin for Google Apps Script.
 
@@ -231,7 +231,7 @@ module.exports = {
   },
   plugins: [
     new GasPlugin({
-      autoGlobalExportsFiles: ['*.ts']
+      autoGlobalExportsFiles: ['**/*.ts']
     })
   ]
 }
@@ -243,11 +243,7 @@ gas-webpack-plugin is support for Webpack@5.x
 
 [npm-image]: https://badge.fury.io/js/gas-webpack-plugin.svg
 [npm-url]: https://npmjs.org/package/gas-webpack-plugin
-[travis-image]: https://travis-ci.com/fossamagna/gas-webpack-plugin.svg?branch=master
-[travis-url]: https://travis-ci.com/fossamagna/gas-webpack-plugin
 [github-actions-image]: https://github.com/fossamagna/gas-webpack-plugin/actions/workflows/test.yml/badge.svg?branch=master
 [github-actions-url]: https://github.com/fossamagna/gas-webpack-plugin/actions/workflows/test.yml?branch=master
-[daviddm-image]: https://david-dm.org/fossamagna/gas-webpack-plugin.svg
-[daviddm-url]: https://david-dm.org/fossamagna/gas-webpack-plugin
 [coveralls-image]: https://coveralls.io/repos/github/fossamagna/gas-webpack-plugin/badge.svg?branch=master
 [coveralls-url]: https://coveralls.io/github/fossamagna/gas-webpack-plugin?branch=master
