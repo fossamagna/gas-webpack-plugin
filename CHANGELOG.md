@@ -1,3 +1,12 @@
+# [2.2.0](https://github.com/fossamagna/gas-webpack-plugin/compare/v2.1.0...v2.2.0) (2022-03-10)
+
+
+### Features
+
+* add include option to define path patterns to detect functions ([4f2c1dc](https://github.com/fossamagna/gas-webpack-plugin/commit/4f2c1dc51bbf08a06d3437a2f9119f9cefcbe6ce))
+
+
+
 # [2.1.0](https://github.com/fossamagna/gas-webpack-plugin/compare/v2.0.2...v2.1.0) (2021-07-30)
 
 
