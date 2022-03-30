@@ -7,6 +7,7 @@
   "dependencies": {
     "gas-entry-generator": "2.1.0",
     "minimatch": "^5.0.0",
+    "slash": "^3.0.0",
     "webpack-sources": "^3.1.1"
   },
   "devDependencies": {
