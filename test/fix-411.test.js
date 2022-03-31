@@ -57,7 +57,7 @@ function minus() {
 }
 function foo() {
 }`
-    t.ok(bundle.startsWith(output), bundle);
+    t.ok(bundle.replaceAll("\r\n", "\n").startsWith(output), bundle);
     t.match(bundle, /.*global\.foo = exports\.foo;.*/);
     t.end();
   });
