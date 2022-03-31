@@ -92,7 +92,7 @@ function plus() {
 }
 function minus() {
 }`
-    t.ok(bundle.toString().startsWith(output), 'plugin and expected output match');
+    t.ok(bundle.replace(/\r\n/g, "\n").startsWith(output), 'plugin and expected output match');
     t.match(bundle, /.*global\.foo = exports\.foo;.*/);
     t.end();
   });
@@ -118,7 +118,7 @@ test('gas-plugin prepend top-level functions in production and ES Module', funct
  */
 function echo() {
 }`
-    t.ok(bundle.toString().startsWith(output), 'plugin and expected output match');
+    t.ok(bundle.replace(/\r\n/g, "\n").startsWith(output), 'plugin and expected output match');
     t.end();
   });
 });
