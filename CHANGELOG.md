@@ -1,3 +1,12 @@
+## [2.2.1](https://github.com/fossamagna/gas-webpack-plugin/compare/v2.2.0...v2.2.1) (2022-03-31)
+
+
+### Bug Fixes
+
+* make sure using slash as path separator of include path pattern on Windows ([e959c1c](https://github.com/fossamagna/gas-webpack-plugin/commit/e959c1c33bc57f1de6be8431f1443506ca6dcac7))
+
+
+
 # [2.2.0](https://github.com/fossamagna/gas-webpack-plugin/compare/v2.1.0...v2.2.0) (2022-03-10)
 
 
