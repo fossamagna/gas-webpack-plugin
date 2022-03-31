@@ -5,6 +5,7 @@ const { SourceMapSource, RawSource } = require('webpack-sources');
 const Dependency = require('webpack/lib/Dependency');
 const minimatch = require('minimatch');
 const path = require('path');
+const slash = require("slash");
 
 const defaultOptions = {
   comment: true,
@@ -61,14 +62,18 @@ GasDependency.Template = class GasDependencyTemplate {
     this.entryFunctions = new Map();
   }
 
+  match(target, pattern) {
+    return minimatch(slash(target), slash(pattern));
+  }
+
   apply(dep, source) {
     const module = dep.m;
-    if (!this.includePatterns.some(file => minimatch(module.resource, file))) {
+    if (!this.includePatterns.some(file => this.match(module.resource, file))) {
       return;
     }
     const options = {
       comment: this.comment,
-      autoGlobalExports: module.resource && this.autoGlobalExportsFilePatterns.some(file => minimatch(module.resource, file)),
+      autoGlobalExports: module.resource && this.autoGlobalExportsFilePatterns.some(file => this.match(module.resource, file)),
     };
 
     const originalSource = typeof source.original === 'function' 
