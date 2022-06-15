@@ -1,6 +1,6 @@
 {
   "name": "gas-webpack-plugin",
-  "version": "2.2.2-beta.0",
+  "version": "2.2.2",
   "description": "Webpack Plugin for Google Apps Script",
   "main": "index.js",
   "types": "types.d.ts",
