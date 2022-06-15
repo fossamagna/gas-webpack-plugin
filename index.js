@@ -83,7 +83,7 @@ GasDependency.Template = class GasDependencyTemplate {
     const output = generate(originalSource, options);
     this.entryFunctions.set(module, output);
     if (output.globalAssignments) {
-      source.insert(source.size(), output.globalAssignments);
+      source.insert(originalSource.length, output.globalAssignments);
     }
   }
 };
