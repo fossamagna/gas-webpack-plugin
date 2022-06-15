@@ -1,3 +1,12 @@
+## [2.2.2-beta.0](https://github.com/fossamagna/gas-webpack-plugin/compare/v2.2.1...v2.2.2-beta.0) (2022-06-15)
+
+
+### Bug Fixes
+
+* use position of original source to insert global assignments ([4c76d11](https://github.com/fossamagna/gas-webpack-plugin/commit/4c76d11c6dd7eef856fd14a2f6ce245f92a118f4))
+
+
+
 ## [2.2.1](https://github.com/fossamagna/gas-webpack-plugin/compare/v2.2.0...v2.2.1) (2022-03-31)
 
 
