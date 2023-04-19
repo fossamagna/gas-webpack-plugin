@@ -111,7 +111,10 @@ test('gas-plugin prepend top-level functions in production and ES Module', funct
     t.ok(jsonStats.errors.length === 0, jsonStats.errors);
     t.ok(jsonStats.warnings.length === 0, jsonStats.errors);
     const bundle = mfs.readFileSync(__dirname + '/output/bundle.js', 'utf8');
-    const output = `function test() {
+    const output = `var global = this;
+function foo() {
+}
+function test() {
 }
 /**
  * Return write arguments.
