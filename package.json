@@ -5,7 +5,7 @@
   "main": "index.js",
   "types": "types.d.ts",
   "dependencies": {
-    "gas-entry-generator": "2.2.0",
+    "gas-entry-generator": "2.3.0",
     "minimatch": "^7.4.2",
     "slash": "^3.0.0",
     "webpack-sources": "^3.1.1"
