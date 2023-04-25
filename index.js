@@ -3,7 +3,7 @@
 const { generate } = require('gas-entry-generator');
 const { SourceMapSource, RawSource } = require('webpack-sources');
 const { RuntimeGlobals, Dependency } = require('webpack');
-const minimatch = require('minimatch');
+const { minimatch } = require('minimatch');
 const path = require('path');
 const slash = require("slash");
 
