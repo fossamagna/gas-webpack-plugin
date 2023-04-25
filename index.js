@@ -2,7 +2,7 @@
 
 const { generate } = require('gas-entry-generator');
 const { SourceMapSource, RawSource } = require('webpack-sources');
-const Dependency = require('webpack/lib/Dependency');
+const { RuntimeGlobals, Dependency } = require('webpack');
 const minimatch = require('minimatch');
 const path = require('path');
 const slash = require("slash");
@@ -37,11 +37,7 @@ function gasify(compilation, chunk, filename, entryFunctions) {
     .filter(entries => !!entries)
     .join('\n');
 
-  const needGloablObject = compilation.chunkGraph.getChunkModules(chunk)
-  .filter(module => !!entryFunctions.get(module.rootModule || module))
-  .some(module => !!entryFunctions.get(module.rootModule || module).globalAssignments);
-
-  const gasify = (needGloablObject ? 'var global = this;\n' : '') + entries + source;
+  const gasify = entries + source;
   compilation.assets[filename] = map
             ? new SourceMapSource(gasify, filename, map)
             : new RawSource(gasify);
@@ -74,6 +70,8 @@ GasDependency.Template = class GasDependencyTemplate {
     const options = {
       comment: this.comment,
       autoGlobalExports: module.resource && this.autoGlobalExportsFilePatterns.some(file => this.match(module.resource, file)),
+      exportsIdentifierName: RuntimeGlobals.exports,
+      globalIdentifierName: RuntimeGlobals.global,
     };
 
     const originalSource = typeof source.original === 'function' 
@@ -127,6 +125,13 @@ GasPlugin.prototype.apply = function(compiler) {
     compilation.hooks.chunkAsset.tap(plugin, (chunk, filename) => {
       gasify(compilation, chunk, filename, gasDependencyTemplate.entryFunctions)
     });
+
+    compilation.hooks.additionalModuleRuntimeRequirements.tap(
+      plugin,
+      (_module, set) => {
+        set.add(RuntimeGlobals.global);
+      }
+    );
   };
 
   compiler.hooks.compilation.tap(plugin, compilationHook);
