@@ -1,3 +1,7 @@
+# [2.5.0](https://github.com/fossamagna/gas-webpack-plugin/compare/v2.4.0...v2.5.0) (2023-04-25)
+
+
+
 # [2.4.0](https://github.com/fossamagna/gas-webpack-plugin/compare/v2.3.0...v2.4.0) (2023-04-25)
 
 
