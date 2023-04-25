@@ -1,3 +1,13 @@
+# [2.4.0](https://github.com/fossamagna/gas-webpack-plugin/compare/v2.3.0...v2.4.0) (2023-04-25)
+
+
+### Features
+
+* support export named declaration when use autoGlobalExportsFiles ([#795](https://github.com/fossamagna/gas-webpack-plugin/issues/795)) ([83eb97c](https://github.com/fossamagna/gas-webpack-plugin/commit/83eb97ccfa3c4103d5c8ea7c88848ee885cdb760))
+* support export named declaration when use autoGlobalExportsFiles ([#801](https://github.com/fossamagna/gas-webpack-plugin/issues/801)) ([03fe306](https://github.com/fossamagna/gas-webpack-plugin/commit/03fe3069385e9540c967d121c10d65b9e19fd48b))
+
+
+
 # [2.3.0](https://github.com/fossamagna/gas-webpack-plugin/compare/v2.2.2...v2.3.0) (2022-06-20)
 
 
