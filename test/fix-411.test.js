@@ -45,8 +45,7 @@ test('gas-plugin with es3ify', function(t) {
     t.ok(jsonStats.errors.length === 0);
     t.ok(jsonStats.warnings.length === 0);
     const bundle = mfs.readFileSync(__dirname + '/output/bundle.js', 'utf8');
-    const output = `var global = this;
-/**
+    const output = `/**
  * Return write arguments.
  */
 function echo() {
@@ -58,7 +57,7 @@ function minus() {
 function foo() {
 }`
     t.ok(bundle.replace(/\r\n/g, "\n").startsWith(output), bundle);
-    t.match(bundle, /.*global\.foo = exports\.foo;.*/);
+    t.match(bundle, /.*__webpack_require__\.g\.foo = __webpack_exports__\.foo;.*/);
     t.end();
   });
 });
@@ -74,9 +73,9 @@ test('gas-plugin with es3ify prepend top-level functions when minimize is enable
     t.ok(jsonStats.errors.length === 0);
     t.ok(jsonStats.warnings.length === 0);
     const bundle = mfs.readFileSync(__dirname + '/output/bundle.js', 'utf8');
-    const output = 'var global=this;function echo(){}function plus(){}function minus(){}function foo(){}'
+    const output = 'function echo(){}function plus(){}function minus(){}function foo(){}'
     t.ok(bundle.startsWith(output), bundle);
-    t.match(bundle, /.*global\.foo=.+\.foo.*/);
+    t.match(bundle, /.*\.g\.foo=.+\.foo.*/);
     t.end();
   });
 });

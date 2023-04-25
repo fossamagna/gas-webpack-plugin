@@ -31,8 +31,7 @@ test('gas-plugin', function(t) {
     t.ok(jsonStats.errors.length === 0, jsonStats.errors);
     t.ok(jsonStats.warnings.length === 0);
     const bundle = mfs.readFileSync(__dirname + '/output/bundle.js', 'utf8');
-    const output = `var global = this;
-function foo() {
+    const output = `function foo() {
 }
 /**
  * Return write arguments.
@@ -44,7 +43,7 @@ function plus() {
 function minus() {
 }`
     t.ok(bundle.replace(/\r\n/g, "\n").startsWith(output), 'plugin and expected output match:' + bundle);
-    t.match(bundle, /.*global\.foo = exports\.foo;.*/);
+    t.match(bundle, /.*__webpack_require__\.g\.foo = __webpack_exports__\.foo;.*/);
     t.end();
   });
 });
@@ -61,7 +60,7 @@ test('gas-plugin prepend top-level functions when minimize is enabled', function
     t.ok(jsonStats.errors.length === 0, jsonStats.errors);
     t.ok(jsonStats.warnings.length === 0, jsonStats.errors);
     const bundle = mfs.readFileSync(__dirname + '/output/bundle.js', 'utf8');
-    const output = 'var global=this;function foo(){}function echo(){}function plus(){}function minus(){}'
+    const output = 'function foo(){}function echo(){}function plus(){}function minus(){}'
     t.ok(bundle.toString().startsWith(output), 'plugin and expected output match');
     t.match(bundle, /.+\.foo=.+\.foo.*/);
     t.end();
@@ -80,8 +79,7 @@ test('gas-plugin prepend top-level functions in development mode', function(t) {
     t.ok(jsonStats.errors.length === 0, jsonStats.errors);
     t.ok(jsonStats.warnings.length === 0, jsonStats.errors);
     const bundle = mfs.readFileSync(__dirname + '/output/bundle.js', 'utf8');
-    const output = `var global = this;
-function foo() {
+    const output = `function foo() {
 }
 /**
  * Return write arguments.
@@ -93,7 +91,7 @@ function plus() {
 function minus() {
 }`
     t.ok(bundle.replace(/\r\n/g, "\n").startsWith(output), 'plugin and expected output match');
-    t.match(bundle, /.*global\.foo = exports\.foo;.*/);
+    t.match(bundle, /.*__webpack_require__\.g\.foo = __webpack_exports__\.foo;.*/);
     t.end();
   });
 });
@@ -111,8 +109,7 @@ test('gas-plugin prepend top-level functions in production and ES Module', funct
     t.ok(jsonStats.errors.length === 0, jsonStats.errors);
     t.ok(jsonStats.warnings.length === 0, jsonStats.errors);
     const bundle = mfs.readFileSync(__dirname + '/output/bundle.js', 'utf8');
-    const output = `var global = this;
-function foo() {
+    const output = `function foo() {
 }
 function test() {
 }
