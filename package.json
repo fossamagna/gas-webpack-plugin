@@ -11,7 +11,7 @@
     "webpack-sources": "^3.1.1"
   },
   "devDependencies": {
-    "conventional-changelog-cli": "^2.0.1",
+    "conventional-changelog-cli": "^3.0.0",
     "es3ify-webpack-plugin": "^0.1.0",
     "eslint": "8.43.0",
     "memory-fs": "0.5.0",
