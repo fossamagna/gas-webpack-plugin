@@ -13,7 +13,7 @@
   "devDependencies": {
     "conventional-changelog-cli": "^3.0.0",
     "es3ify-webpack-plugin": "^0.1.0",
-    "eslint": "8.48.0",
+    "eslint": "8.50.0",
     "memory-fs": "0.5.0",
     "nyc": "15.1.0",
     "tap": "16.3.8",
