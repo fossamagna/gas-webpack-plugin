@@ -11,9 +11,11 @@
     "webpack-sources": "^3.1.1"
   },
   "devDependencies": {
+    "@eslint/js": "^9.1.1",
     "conventional-changelog-cli": "^4.1.0",
     "es3ify-webpack-plugin": "^0.1.0",
-    "eslint": "8.57.0",
+    "eslint": "9.1.0",
+    "globals": "^15.0.0",
     "memory-fs": "0.5.0",
     "nyc": "15.1.0",
     "tap": "16.3.10",
@@ -23,7 +25,8 @@
   },
   "scripts": {
     "pretest": "cd test && npm install",
-    "test": "eslint index.js && nyc --reporter=lcov --reporter=text-summary tap test/*.test.js",
+    "lint": "eslint index.js",
+    "test": "nyc --reporter=lcov --reporter=text-summary tap test/*.test.js",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md"
   },
