@@ -1,4 +1,4 @@
-import echo from './echo';
+import echo from "./echo";
 /**
  * Return write arguments.
  */
@@ -10,4 +10,5 @@ function plus(x: number, y: number) {
 function minus(x: number, y: number) {
   return x - y;
 }
-global.plus = plus, global.minus = minus;
+(global.plus = plus), (global.minus = minus);
+export function boo() {}
