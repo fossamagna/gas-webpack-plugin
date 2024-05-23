@@ -1,3 +1,12 @@
+# [2.6.0](https://github.com/fossamagna/gas-webpack-plugin/compare/v2.5.0...v2.6.0) (2024-05-23)
+
+
+### Features
+
+* detect export function if autoGlobalExportsFiles is enabled ([#909](https://github.com/fossamagna/gas-webpack-plugin/issues/909)) ([99925f6](https://github.com/fossamagna/gas-webpack-plugin/commit/99925f67bd15c6e61db1054dc3ada4b31869cd48))
+
+
+
 # [2.5.0](https://github.com/fossamagna/gas-webpack-plugin/compare/v2.4.0...v2.5.0) (2023-04-25)
 
 
