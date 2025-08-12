@@ -16,6 +16,7 @@
     "es3ify-webpack-plugin": "^0.1.0",
     "eslint": "9.33.0",
     "globals": "^16.0.0",
+    "lodash": "^4.17.21",
     "memory-fs": "0.5.0",
     "nyc": "17.1.0",
     "tap": "16.3.10",
