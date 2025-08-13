@@ -3,9 +3,8 @@
 const { generate } = require("gas-entry-generator");
 const { SourceMapSource, RawSource } = require("webpack-sources");
 const { RuntimeGlobals, Dependency } = require("webpack");
-const { minimatch } = require("minimatch");
+const micromatch = require('micromatch');
 const path = require("path");
-const slash = require("slash");
 
 const defaultOptions = {
   comment: true,
@@ -61,7 +60,7 @@ GasDependency.Template = class GasDependencyTemplate {
   }
 
   match(target, pattern) {
-    return minimatch(slash(target), slash(pattern));
+    return micromatch.isMatch(target, pattern, { windows: true });
   }
 
   apply(dep, source) {
