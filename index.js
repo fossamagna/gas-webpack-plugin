@@ -60,7 +60,7 @@ GasDependency.Template = class GasDependencyTemplate {
   }
 
   match(target, pattern) {
-    return micromatch.isMatch(target, pattern, { posixSlashes: true });
+    return micromatch.isMatch(target, pattern, { windows: true });
   }
 
   apply(dep, source) {
