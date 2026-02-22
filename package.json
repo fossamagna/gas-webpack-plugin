@@ -11,7 +11,7 @@
     "webpack-sources": "^3.1.1"
   },
   "devDependencies": {
-    "@eslint/js": "^9.1.1",
+    "@eslint/js": "^10.0.1",
     "conventional-changelog-cli": "^5.0.0",
     "es3ify-webpack-plugin": "^0.1.0",
     "eslint": "10.0.1",
